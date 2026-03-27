@@ -1,0 +1,519 @@
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shivneri Fort – Birthplace of Chhatrapati Shivaji Maharaj</title>
+  <link href="rel="stylesheet"/>
+
+  <style>
+    :root {
+      --rust:      #C84B0C;
+      --saffron:   #E06010;
+      --stone:     #7A5C3E;
+      --forest:    #7A2E08;
+      --sand:      #FEF0E4;
+      --warm-white:#FFF8F2;
+      --border:    #F0C9A8;
+      --muted:     #A0714F;
+      --txt:       #2A1208;
+      --gold:      #C8860A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--txt);
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    /* ── NAV STRIP ── */
+    .nav-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background: var(--forest);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-strip span { color: rgba(255,255,255,0.4); }
+    .nav-strip strong { color: #FFD28A; font-weight: 500; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+      filter: brightness(0.55) saturate(1.1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 44px;
+      background: linear-gradient(to top, rgba(120,35,5,0.88) 0%, transparent 55%);
+    }
+
+    .hero-label {
+      font-size: 0.7rem;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #FFD28A;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.5px;
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+
+    /* ── META ROW ── */
+    .meta-row {
+      background: var(--forest);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .meta-cell {
+      flex: 1 1 150px;
+      padding: 16px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .meta-cell:last-child { border-right: none; }
+
+    .meta-cell .mc-label {
+      font-size: 0.65rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #FFD28A;
+      margin-bottom: 3px;
+      font-weight: 500;
+    }
+
+    .meta-cell .mc-val {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      font-weight: 400;
+    }
+
+    /* ── BODY ── */
+    .body-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 52px 28px 72px;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 48px; }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--rust);
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 3px;
+      background: var(--saffron);
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: var(--txt);
+      font-weight: 300;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    em { font-style: italic; color: var(--stone); }
+
+    strong { font-weight: 500; color: var(--txt); }
+
+    /* ── FACTS ── */
+    .fact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 16px;
+    }
+
+    .fact-item {
+      background: var(--sand);
+      padding: 14px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .fact-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--saffron);
+      line-height: 1;
+      min-width: 22px;
+      margin-top: 2px;
+    }
+
+    .fact-txt {
+      font-size: 0.92rem;
+      color: var(--txt);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── BIRTHPLACE BOX ── */
+    .birthplace-box {
+      background: var(--forest);
+      color: #fff;
+      padding: 32px 36px;
+      margin-top: 16px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .birth-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .birth-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #FFD28A;
+      margin-bottom: 10px;
+    }
+
+    .birth-content p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      font-weight: 300;
+    }
+
+    /* ── LOCATION ── */
+    .location-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--border);
+      padding: 18px 22px;
+      text-decoration: none;
+      color: var(--txt);
+      margin-top: 16px;
+      background: var(--sand);
+      transition: border-color 0.2s;
+    }
+
+    .location-link:hover { border-color: var(--saffron); }
+
+    .loc-pin {
+      width: 40px;
+      height: 40px;
+      background: var(--rust);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .loc-pin svg { width: 20px; height: 20px; fill: #fff; }
+
+    .loc-detail strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--txt);
+      margin-bottom: 2px;
+    }
+
+    .loc-detail span { font-size: 0.82rem; color: var(--muted); }
+
+    .loc-arrow { margin-left: auto; color: var(--rust); font-size: 1.3rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      color: rgba(255,255,255,0.45);
+      padding: 36px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.82rem;
+    }
+
+    .footer-left strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: #FFD28A;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .footer-left a { color: rgba(255,255,255,0.35); }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right .by-label {
+      font-size: 0.65rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #FFD28A;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .footer-right .author-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 620px) {
+      .hero { height: 300px; }
+      .hero-overlay { padding: 0 24px 32px; }
+      .fact-grid { grid-template-columns: 1fr; }
+      .birthplace-box { flex-direction: column; gap: 14px; }
+      .nav-strip { padding: 10px 20px; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-right { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV STRIP -->
+<div class="nav-strip">
+  <span>Maharashtra Heritage</span>
+  <strong>Historical Monuments of India</strong>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <img
+    src="shiv.jpg"
+    alt="Shivneri Fort on a hilltop in Junnar, Maharashtra"
+  />
+  <div class="hero-overlay">
+    <p class="hero-label">Junnar · Pune District · Maharashtra</p>
+    <h1>Shivneri Fort</h1>
+    <p class="hero-sub">Birthplace of Chhatrapati Shivaji Maharaj &nbsp;&middot;&nbsp; 6th Century Hill Fort</p>
+  </div>
+  <span class="hero-caption">Image: Wikimedia Commons</span>
+</div>
+
+<!-- META ROW -->
+<div class="meta-row">
+  <div class="meta-cell">
+    <div class="mc-label">District</div>
+    <div class="mc-val">Junnar, Pune</div>
+  </div>
+  <div class="meta-cell">
+    <div class="mc-label">Altitude</div>
+    <div class="mc-val">1,030 m (3,380 ft)</div>
+  </div>
+  <div class="meta-cell">
+    <div class="mc-label">Built</div>
+    <div class="mc-val">6th Century CE</div>
+  </div>
+  <div class="meta-cell">
+    <div class="mc-label">Type</div>
+    <div class="mc-val">Giri Durg (Hill Fort)</div>
+  </div>
+  <div class="meta-cell">
+    <div class="mc-label">Status</div>
+    <div class="mc-val">Protected by ASI</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- WHAT IS IT -->
+  <div class="section">
+    <h2>What is Shivneri Fort?</h2>
+    <p>
+      Shivneri Fort is a historic hill fort situated near the town of Junnar in Pune district, Maharashtra. Rising to an altitude of approximately 1,030 metres, the fort stands on a steep, isolated rocky hill encircled by dense forests of the Sahyadri range. Its sheer rock faces and narrow access paths made it an extraordinarily strong defensive position, and it served as a key military stronghold for various ruling powers across many centuries.
+    </p>
+    <p>
+      The fort complex contains several ancient water cisterns, cave shrines, the <em>Shivai Devi</em> temple, and a small room traditionally identified as the birthplace of Chhatrapati Shivaji Maharaj. For Marathas and millions of Indians, Shivneri is not merely a fort — it is sacred ground.
+    </p>
+  </div>
+
+  <!-- BIRTHPLACE HIGHLIGHT BOX -->
+  <div class="birthplace-box">
+    <div class="birth-icon">🏛</div>
+    <div class="birth-content">
+      <h3>The Birthplace of Chhatrapati Shivaji Maharaj</h3>
+      <p>
+        Shivneri Fort is most renowned as the birthplace of Chhatrapati Shivaji Maharaj, who was born here on <strong>19 February 1630</strong> to Jijabai and Shahaji Bhosale. His mother Jijabai took refuge at Shivneri for its security, and it was within these fort walls that the future founder of the Maratha Empire spent his early childhood — a beginning that would shape one of the most remarkable rulers in Indian history.
+      </p>
+    </div>
+  </div>
+
+  <!-- LOCATION & HISTORY -->
+  <div class="section" style="margin-top:44px;">
+    <h2>Location and History</h2>
+    <p>
+      Shivneri is located approximately 90 kilometres north of Pune city, near the town of Junnar in the Western Ghats. The fort is accessible via a winding path with several gates — including the notable <em>Mahadarwaja</em> — each built as a layer of defence against invaders. The name <em>Shivneri</em> is derived from the goddess Shivai, whose temple stands prominently within the fort.
+    </p>
+    <p>
+      The fort's origins trace back to the 6th century CE, and it was controlled at various points by the Satavahanas, Chalukyas, Bahamanis, Nizamshahis of Ahmednagar, and eventually the Mughals. It was under the control of the Nizamshah of Ahmednagar when Jijabai and Shivaji took shelter here. The fort was later captured by Mughal forces in 1637 CE, after which the Bhosale family relocated.
+    </p>
+  </div>
+
+  <!-- IMPORTANCE -->
+  <div class="section">
+    <h2>Why is it Historically Important?</h2>
+    <p>
+      Shivneri holds an irreplaceable place in Indian history as the birthplace of Chhatrapati Shivaji Maharaj — the visionary king who established the Maratha Empire and became a symbol of self-rule, justice, and courage for generations. The fort is revered not only as a monument but as a place of pilgrimage, drawing hundreds of thousands of visitors each year, especially on Shivaji Jayanti.
+    </p>
+    <p>
+      Beyond its association with Shivaji Maharaj, Shivneri is a fine example of early Maratha and Deccan fortification architecture. Its water management system — with large carved cisterns capable of storing water year-round — reflects the advanced engineering knowledge of its builders. The fort has been declared a protected monument by the Archaeological Survey of India.
+    </p>
+  </div>
+
+  <!-- FACTS -->
+  <div class="section">
+    <h2>Key Facts</h2>
+    <div class="fact-grid">
+      <div class="fact-item">
+        <div class="fact-num">01</div>
+        <div class="fact-txt">Shivneri is the <strong>birthplace of Chhatrapati Shivaji Maharaj</strong>, born here on 19 February 1630.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">02</div>
+        <div class="fact-txt">The fort contains a small room called <strong>Shivkunj</strong>, traditionally identified as Shivaji's birth chamber.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">03</div>
+        <div class="fact-txt">The fort's name comes from the <strong>Shivai Devi temple</strong> inside the complex, where Jijabai prayed for a brave son.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">04</div>
+        <div class="fact-txt">Shivneri has <strong>seven successive gates</strong> on its main approach path, each serving as a separate line of defence.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">05</div>
+        <div class="fact-txt">Large <strong>rock-cut water cisterns</strong> inside the fort could store enough water to last through a year-long siege.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">06</div>
+        <div class="fact-txt">The fort stands at <strong>1,030 metres</strong> above sea level, offering sweeping views of the Junnar valley and Sahyadri range.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">07</div>
+        <div class="fact-txt">It is a <strong>Grade-I protected monument</strong> under the Archaeological Survey of India.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">08</div>
+        <div class="fact-txt">Shivneri Jayanti is celebrated with large gatherings at the fort every year on <strong>19 February</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="section">
+    <h2>Location</h2>
+    <a
+      class="location-link"
+      href="https://maps.google.com/?q=Shivneri+Fort,+Junnar,+Maharashtra,+India"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div class="loc-pin">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+        </svg>
+      </div>
+      <div class="loc-detail">
+        <strong>Shivneri Fort, Junnar, Maharashtra, India</strong>
+        <span>Junnar Taluka, Pune District &mdash; Open in Google Maps &rarr;</span>
+      </div>
+      <div class="loc-arrow">&rsaquo;</div>
+    </a>
+  </div>
+
+</div><!-- /body-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <strong>Shivneri Fort, Maharashtra</strong>
+    Historical Webpage &middot; College Project<br/>
+    Image: <a href="shivneri.jpg"_blank">Wikimedia Commons</a>
+  </div>
+  <div class="footer-right">
+    <span class="by-label">Prepared by</span>
+    <span class="author-name">Vaibhav Moin</span>
+  </div>
+</footer>
+
+</body>
+</html>
+
